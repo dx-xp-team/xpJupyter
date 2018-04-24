@@ -6,14 +6,14 @@ RUN apt-get -y install python-pip
 RUN pip install --upgrade pip
 RUN pip install pixiedust jupyter_contrib_nbextensions jupyter_nbextensions_configurator tensorflow
 RUN pip install --upgrade html5lib
-RUN curl -s http://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz | tar xz -C /opt
-RUN ln -s /opt/spark-2.2.0-bin-hadoop2.7 /opt/spark
+RUN curl -s http://d3kbcqa49mib13.cloudfront.net/spark-2.3.0-bin-hadoop2.7.tgz | tar xz -C /opt
+RUN ln -s /opt/spark-2.3.0-bin-hadoop2.7 /opt/spark
 ADD inputPixiedustJupyterInstall.txt /tmp/
 RUN jupyter pixiedust install < /tmp/inputPixiedustJupyterInstall.txt
-RUN sed -i '/PYSPARK_SUBMIT_ARGS/d'  /root/.local/share/jupyter/kernels/pythonwithpixiedustspark22/kernel.json
-RUN sed -i '/SPARK_DRIVER_MEMORY/d' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark22/kernel.json
-RUN sed -i '/SPARK_LOCAL_IP/d' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark22/kernel.json
-RUN sed -i -e 's/opt\/spark\",/opt\/spark\"/g' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark22/kernel.json
+RUN sed -i '/PYSPARK_SUBMIT_ARGS/d'  /root/.local/share/jupyter/kernels/pythonwithpixiedustspark23/kernel.json
+RUN sed -i '/SPARK_DRIVER_MEMORY/d' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark23/kernel.json
+RUN sed -i '/SPARK_LOCAL_IP/d' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark23/kernel.json
+RUN sed -i -e 's/opt\/spark\",/opt\/spark\"/g' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark23/kernel.json
 RUN jupyter contrib nbextension install
 RUN jupyter nbextensions_configurator enable
 WORKDIR /opt/spark

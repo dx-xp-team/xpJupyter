@@ -6,7 +6,7 @@ RUN apt-get -y install python-pip
 RUN pip install --upgrade pip
 RUN pip install pixiedust jupyter_contrib_nbextensions jupyter_nbextensions_configurator tensorflow
 RUN pip install --upgrade html5lib
-RUN curl -s http://d3kbcqa49mib13.cloudfront.net/spark-2.3.0-bin-hadoop2.7.tgz | tar xz -C /opt
+RUN curl -s http://apache.crihan.fr/dist/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz | tar xz -C /opt
 RUN ln -s /opt/spark-2.3.0-bin-hadoop2.7 /opt/spark
 ADD inputPixiedustJupyterInstall.txt /tmp/
 RUN jupyter pixiedust install < /tmp/inputPixiedustJupyterInstall.txt

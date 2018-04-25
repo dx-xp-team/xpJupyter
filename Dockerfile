@@ -1,4 +1,4 @@
-FROM continuumio/anaconda
+FROM continuumio/anaconda3
 
 RUN apt-get -y update
 RUN apt-get -y install default-jre
@@ -13,9 +13,10 @@ RUN jupyter pixiedust install < /tmp/inputPixiedustJupyterInstall.txt
 RUN sed -i '/PYSPARK_SUBMIT_ARGS/d'  /root/.local/share/jupyter/kernels/pythonwithpixiedustspark23/kernel.json
 RUN sed -i '/SPARK_DRIVER_MEMORY/d' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark23/kernel.json
 RUN sed -i '/SPARK_LOCAL_IP/d' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark23/kernel.json
-RUN sed -i -e 's/opt\/spark\",/opt\/spark\"/g' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark23/kernel.json
+RUN sed -i -e 's/pyspark\/shell.py\",/pyspark\/shell.py\"/g' /root/.local/share/jupyter/kernels/pythonwithpixiedustspark23/kernel.json
 RUN jupyter contrib nbextension install
 RUN jupyter nbextensions_configurator enable
+ADD custom.css /root/.jupyter/custom/
 WORKDIR /opt/spark
 RUN cp /opt/spark/conf/spark-defaults.conf.template /opt/spark/conf/spark-defaults.conf
 RUN echo 'spark.driver.extraJavaOptions=-Dhttp.proxyHost=http://proxy.lbs.alcatel-lucent.com -Dhttp.proxyPort=8000 -Dhttps.proxyHost=http://proxy.lbs.alcatel-lucent.com -Dhttps.proxyPort=8000' >> /opt/spark/conf/spark-defaults.conf

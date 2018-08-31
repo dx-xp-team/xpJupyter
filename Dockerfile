@@ -8,7 +8,7 @@ RUN pip install pixiedust jupyter_contrib_nbextensions jupyter_nbextensions_conf
 RUN pip install --upgrade html5lib
 
 # Install Spark for Driver
-RUN curl -s http://apache.claz.org/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz  | tar xz -C /opt
+RUN wget -qO- http://mirrors.gigenet.com/apache/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz  | tar xvz -C /opt
 RUN ln -s /opt/spark-2.3.1-bin-hadoop2.7 /opt/spark
 
 # Install Pixiedust and remove some hardcoded parameters so they can be set in Docker compose file

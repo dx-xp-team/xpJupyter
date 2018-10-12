@@ -4,7 +4,7 @@ RUN apt-get -y update
 RUN apt-get -y install default-jre
 RUN apt-get -y install python-pip
 RUN pip install --upgrade pip
-RUN pip install pixiedust jupyter_contrib_nbextensions jupyter_nbextensions_configurator tensorflow
+RUN pip install pixiedust jupyter_contrib_nbextensions jupyter_nbextensions_configurator tensorflow horovod mlflow
 RUN pip install --upgrade html5lib
 
 # Install Spark for Driver

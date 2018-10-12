@@ -1,4 +1,4 @@
-FROM continuumio/anaconda3:5.3.0
+FROM continuumio/anaconda3:5.2.0
 
 RUN apt-get -y update
 RUN apt-get -y install default-jre

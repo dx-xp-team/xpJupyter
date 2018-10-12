@@ -2,7 +2,7 @@ FROM continuumio/anaconda3:5.2.0
 
 RUN apt-get -y update
 RUN apt-get -y install default-jre
-RUN apt-get -y install python-pip
+RUN apt-get -y install python-pip libcr-dev mpich mpich-doc
 RUN pip install --upgrade pip
 RUN pip install pixiedust jupyter_contrib_nbextensions jupyter_nbextensions_configurator tensorflow horovod mlflow
 RUN pip install --upgrade html5lib
